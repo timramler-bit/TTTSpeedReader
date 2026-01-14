@@ -1,0 +1,11 @@
+{
+  "name": "Tim the Teacher: Reading Assistant",
+  "short_name": "Tim",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "start_url": ".",
+  "icons": [
+    { "src": "https://cdn-icons-png.flaticon.com/512/3429/3429150.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

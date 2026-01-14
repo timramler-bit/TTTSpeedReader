@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Speed Reader</title>
+  
+  <!-- PWA & Offline Support -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3429/3429150.png">
+
+  <!-- Styling & Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/tesseract.js@v5.1.0/dist/tesseract.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root { --accent: #3b82f6; --bg: #000; }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: var(--bg); 
+      color: #fff; 
+      overflow: hidden; 
+      margin: 0; 
+      user-select: none;
+    }
+    .font-poppins { font-family: 'Poppins', sans-serif; }
+    .pivot-red { color: #ef4444; text-shadow: 0 0 15px rgba(239, 68, 68, 0.6); }
+    input[type=range] { -webkit-appearance: none; background: transparent; width: 100%; }
+    input[type=range]::-webkit-slider-runnable-track { height: 4px; background: #1f2937; border-radius: 2px; }
+    input[type=range]::-webkit-slider-thumb { 
+      -webkit-appearance: none; height: 18px; width: 18px; border-radius: 50%; 
+      background: var(--accent); cursor: pointer; margin-top: -7px; 
+      box-shadow: 0 0 10px var(--accent); border: 2px solid #000;
+    }
+    .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    @keyframes pulse-soft { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .animate-pulse-soft { animation: pulse-soft 3s infinite; }
+  </style>
+
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <!-- Error Logger for Troubleshooting -->
+  <div id="error-console" style="display:none; position:fixed; bottom:0; left:0; right:0; background:rgba(255,0,0,0.9); color:white; padding:20px; font-family:monospace; z-index:9999; font-size:12px; max-height:200px; overflow-y:auto;">
+    <strong>App Error Detected:</strong><br><div id="error-message"></div>
+  </div>
+
+  <div id="root"></div>
+
+  <!-- CRITICAL: Added data-presets to tell Babel to handle TypeScript (.tsx) -->
+  <script type="text/babel" data-presets="react,typescript" data-type="module" src="index.tsx"></script>
+  
+  <script>
+    // Error Logging Logic
+    window.onerror = function(message, source, lineno, colno, error) {
+      document.getElementById('error-console').style.display = 'block';
+      document.getElementById('error-message').innerHTML += message + ' at ' + source + ':' + lineno + '<br>';
+    };
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').then(reg => console.log('SW OK'), err => console.log('SW Fail'));
+      });
+    }
+  </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
