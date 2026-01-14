@@ -220,9 +220,9 @@ const App = () => {
       {/* --- READER CORE --- */}
       <div className="flex-1 flex flex-col items-center justify-center cursor-pointer px-4 md:px-10" onClick={() => setPlaying(!playing)}>
         <div className="flex font-black leading-none w-full select-none" style={{ fontSize: `${fontSize}px` }}>
-          <div className="flex-1 text-right text-zinc-300/20 overflow-hidden pr-2">{pre}</div>
+          <div className="flex-1 text-right text-zinc-200 overflow-hidden pr-2">{pre}</div>
           <div className="pivot-red">{p}</div>
-          <div className="flex-1 text-left text-zinc-300/20 overflow-hidden pl-2">{suf}</div>
+          <div className="flex-1 text-left text-zinc-200 overflow-hidden pl-2">{suf}</div>
         </div>
         
         {/* Progress Tracker */}
