@@ -1,11 +1,11 @@
 {
-  "name": "Tim the Teacher: Reading Assistant",
-  "short_name": "Tim",
+  "name": "Speed Reader",
+  "short_name": "Speed Reader",
   "theme_color": "#000000",
   "background_color": "#000000",
   "display": "standalone",
   "start_url": ".",
   "icons": [
-    { "src": "https://cdn-icons-png.flaticon.com/512/3429/3429150.png", "sizes": "512x512", "type": "image/png" }
+    { "src": "https://img.icons8.com/fluency/512/speedometer.png", "sizes": "512x512", "type": "image/png" }
   ]
 }
